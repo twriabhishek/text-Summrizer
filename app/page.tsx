@@ -76,6 +76,7 @@ export default function TextSummarizer() {
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
+    
     if (!file) return
 
     setFileName(file.name)
@@ -97,7 +98,7 @@ export default function TextSummarizer() {
           return prev + 5
         })
       }, 100)
-
+      
       const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
@@ -105,7 +106,7 @@ export default function TextSummarizer() {
 
       clearInterval(progressInterval)
       setUploadProgress(100)
-
+      
       if (!response.ok) {
         throw new Error("Failed to upload file")
       }
